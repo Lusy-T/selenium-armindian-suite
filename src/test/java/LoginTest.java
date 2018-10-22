@@ -18,6 +18,7 @@ public class LoginTest {
 
         assertTrue(driver.getCurrentUrl().contains("http://google.comm"), "The page has incorrect URL");
 
+
     }
 
     @AfterMethod
