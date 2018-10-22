@@ -2,7 +2,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
@@ -21,10 +23,20 @@ public class LoginTest {
         assertTrue(driver.getCurrentUrl().contains("http://google.comm"), "The page has incorrect URL");
     }
 
+    @BeforeMethod
+    public void setup()
+    {
+//            System.setProperty("webdriver.chrome.driver", "C:\\Lusine\\chromedriver.exe");
+//    driver = new ChromeDriver();
+
+        System.setProperty("webdriver.gecko.driver", "C:\\Lusine\\geckodriver.exe");
+    driver = new FirefoxDriver();
+
+    }
+
     @Test
     public void githubFailedLogin(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Lusine\\chromedriver.exe");
-        driver = new ChromeDriver();
+
 //        driver.get("https://github.com/login");
 //
 //        WebElement loginElement = driver.findElement(By.id("login_field"));
