@@ -1,9 +1,12 @@
+import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+import static jdk.nashorn.internal.objects.NativeJava.type;
 
-    private WebDriver driver;
+public class LoginPage extends BasePage {
+
+    //private WebDriver driver;
 
    private By userNameField = By.id("login_field");
     private By passwordField = By.id("password");
@@ -12,19 +15,29 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver)
     {
-        this.driver = driver;
-        driver.get("https://github.com/login");
+        super(driver);
+       // this.driver = driver;
+        driver.get(getURL());
     }
 
     public void LoginWith(String userName, String password)
     {
-        driver.findElement(userNameField).sendKeys(userName);
-        driver.findElement(passwordField).sendKeys(password);
-        driver.findElement(signIn).click();
+        type(userNameField,  userName);
+        type(passwordField, userName);
+        click(signIn);
+
+//        driver.findElement(userNameField).sendKeys(userName);
+//        driver.findElement(passwordField).sendKeys(password);
+//        driver.findElement(signIn).click();
     }
 
     public boolean isErrorMessageDisplayed()
     {
         return driver.findElement(errorMessage).isDisplayed();
+    }
+
+    public String getURL()
+    {
+        return "https://github.com/login";
     }
 }

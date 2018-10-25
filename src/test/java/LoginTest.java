@@ -1,3 +1,4 @@
+import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,30 +13,32 @@ import static org.testng.Assert.assertTrue;
 public class LoginTest {
 
     WebDriver driver;
-    @Test
 
-    public void successLogin()
-    {
-        System.setProperty("webdriver.chrome.driver", "C:\\Lusine\\chromedriver.exe");
+    @BeforeMethod
+    public void setup() {
+//            System.setProperty("webdriver.chrome.driver", "C:\\Lusine\\chromedriver.exe");
+//    driver = new ChromeDriver();
+
+        System.setProperty("webdriver.chrome.driver", "./src/main/resources/drivers/chromedriver-windows-32bit.exe");
+        driver = new ChromeDriver();
+    }
+
+    @Test
+    public void successLogin() {
         driver = new ChromeDriver();
         driver.get("http://google.com");
 
         assertTrue(driver.getCurrentUrl().contains("http://google.comm"), "The page has incorrect URL");
     }
 
-    @BeforeMethod
-    public void setup()
-    {
-//            System.setProperty("webdriver.chrome.driver", "C:\\Lusine\\chromedriver.exe");
-//    driver = new ChromeDriver();
-
-        System.setProperty("webdriver.gecko.driver", "C:\\Lusine\\geckodriver.exe");
-    driver = new FirefoxDriver();
-
-    }
 
     @Test
-    public void githubFailedLogin(){
+    public void githubFailedLogin() {
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.LoginWith("a@a.a", "a");
+
+        assertTrue(loginPage.isErrorMessageDisplayed(), "Error message was not displayed");
 
 //        driver.get("https://github.com/login");
 //
@@ -50,15 +53,15 @@ public class LoginTest {
 //        assertTrue(driver.findElement(By.id("js-flash-container")).isDisplayed(), "Error message was not displayed" );
         //
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.LoginWith("a@a.a", "a");
 
-        assertTrue(loginPage.isErrorMessageDisplayed(),"Error message was not displayed"  );
     }
 
     @AfterMethod
-    public void tearDown()
-    {
+    public void tearDown() {
         driver.quit();
+    }
+
+    public String getURL() {
+        return null;
     }
 }
