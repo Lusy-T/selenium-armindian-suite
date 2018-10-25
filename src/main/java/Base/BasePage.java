@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public abstract class BasePage {
     protected WebDriver driver;
@@ -55,5 +56,16 @@ public abstract class BasePage {
     public void click(By location)
     {
         click(find(location));
+    }
+
+    public boolean isDisplayed(By location )
+    {
+        try
+        {
+            return find(location).isDisplayed();
+        }catch (NoSuchElementException e)
+        {
+            return false;
+        }
     }
 }

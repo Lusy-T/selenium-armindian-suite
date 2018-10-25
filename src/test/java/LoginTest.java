@@ -25,10 +25,9 @@ public class LoginTest {
 
     @Test
     public void successLogin() {
-        driver = new ChromeDriver();
-        driver.get("http://google.com");
+       driver.get("http://google.com");
 
-        assertTrue(driver.getCurrentUrl().contains("http://google.comm"), "The page has incorrect URL");
+        assertTrue(driver.getCurrentUrl().contains("https://www.google.com/"), "The page has incorrect URL");
     }
 
 
