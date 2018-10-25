@@ -8,7 +8,7 @@ public class LoginPage {
    private By userNameField = By.id("login_field");
     private By passwordField = By.id("password");
     private By signIn = By.name("commit");
-    private By errorMessage = By.cssSelector("#js- flash-container.flash-error");
+    private By errorMessage = By.id("js-flash-container"); // By.cssSelector("#js- flash-container.flash-error");
 
     public LoginPage(WebDriver driver)
     {
