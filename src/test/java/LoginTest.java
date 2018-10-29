@@ -8,11 +8,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static Base.DriverHelper.getDriver;
 import static org.testng.Assert.assertTrue;
 
-public class LoginTest {
+public class LoginTest extends SeleniumBase {
 
-    WebDriver driver;
 
     @BeforeMethod
     public void setup() {
@@ -20,21 +20,21 @@ public class LoginTest {
 //    driver = new ChromeDriver();
 
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/drivers/chromedriver-windows-32bit.exe");
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
     }
 
     @Test
     public void successLogin() {
-       driver.get("http://google.com");
+       getDriver().get("http://google.com");
 
-        assertTrue(driver.getCurrentUrl().contains("https://www.google.com/"), "The page has incorrect URL");
+        assertTrue(getDriver().getCurrentUrl().contains("https://www.google.com/"), "The page has incorrect URL");
     }
 
 
     @Test
     public void githubFailedLogin() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.LoginWith("a@a.a", "a");
 
         assertTrue(loginPage.isErrorMessageDisplayed(), "Error message was not displayed");
@@ -55,12 +55,5 @@ public class LoginTest {
 
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 
-    public String getURL() {
-        return null;
-    }
 }

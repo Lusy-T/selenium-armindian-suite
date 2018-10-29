@@ -7,12 +7,14 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static Base.DriverHelper.getDriver;
+
 public abstract class BasePage {
     protected WebDriver driver;
 
-    public BasePage(WebDriver driver)
+    public BasePage()
     {
-        this.driver = driver;
+        this.driver = DriverHelper.getDriver();
     }
 
 //    public BasePage()
