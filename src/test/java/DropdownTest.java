@@ -7,11 +7,8 @@ import static org.testng.Assert.assertTrue;
 
 public class DropdownTest extends SeleniumBase {
 
-
-
     @BeforeMethod
     public void setup() {
-
     }
 
     @Test

@@ -3,18 +3,29 @@ package Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.LoadableComponent;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import static Base.DriverHelper.getDriver;
 
-public abstract class BasePage {
+public abstract class BasePage <T extends LoadableComponent<T>> extends LoadableComponent<T>{
     protected WebDriver driver;
 
     public BasePage()
     {
         this.driver = DriverHelper.getDriver();
+    }
+
+    @Override
+    protected void load() {
+        // yet forgotten :)
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        driver.getCurrentUrl().equals(getURL());
     }
 
 //    public BasePage()
@@ -65,6 +76,16 @@ public abstract class BasePage {
         try
         {
             return find(location).isDisplayed();
+        }catch (NoSuchElementException e)
+        {
+            return false;
+        }
+    }
+
+    public boolean isDisplayed(WebElement element) {
+        try
+        {
+            return element.isDisplayed();
         }catch (NoSuchElementException e)
         {
             return false;
