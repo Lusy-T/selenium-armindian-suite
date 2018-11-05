@@ -50,6 +50,7 @@ public abstract class BasePage <T extends LoadableComponent<T>> extends Loadable
     {
         type(By.cssSelector(cssSelector), text);
     }
+
     public WebElement find(By location)
     {
         return driver.findElement(location);

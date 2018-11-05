@@ -1,12 +1,15 @@
 import org.testng.annotations.AfterMethod;
 
 import static Base.DriverHelper.getDriver;
+import static Base.DriverHelper.quitDriver;
 
 public class SeleniumBase {
     @AfterMethod
     public void tearDown() {
-        getDriver().quit();
+
+        quitDriver();
     }
+
 
     public String getURL() {
         return null;
