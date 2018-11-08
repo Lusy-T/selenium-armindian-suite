@@ -3,19 +3,20 @@ package Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static Base.DriverHelper.getDriver;
+
 
 public abstract class BasePage <T extends LoadableComponent<T>> extends LoadableComponent<T>{
     protected WebDriver driver;
 
     public BasePage()
     {
-        this.driver = DriverHelper.getDriver();
+        this.driver = DriverHelper.get().getDriver();
     }
 
     @Override
@@ -92,4 +93,10 @@ public abstract class BasePage <T extends LoadableComponent<T>> extends Loadable
             return false;
         }
     }
+
+    public Actions getActions() //Actions - class of Selenium
+    {
+        return new Actions(driver);
+    }
+
 }

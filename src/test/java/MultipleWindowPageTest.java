@@ -1,6 +1,7 @@
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class MultipleWindowPageTest extends SeleniumBase{
 
@@ -12,8 +13,10 @@ public class MultipleWindowPageTest extends SeleniumBase{
         multipleWindowPage.clickOnClickHere();
         multipleWindowPage.changeTab(1);
 
-        assertEquals(multipleWindowPage.getNewTabText(), "New Window", "New Tab was not open");
-        assertTrue(multipleWindowPage.getCurrentUrl().contains("windows/new"), "New tab url is not correct");
+        assertEquals(multipleWindowPage.getNewTabText(), "New Window",
+                "New Tab was not opened!");
+        assertTrue(multipleWindowPage.getCurrentURL().contains("windows/new"),
+                "New Tab url is not correct!");
     }
 
 }

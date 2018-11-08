@@ -1,4 +1,5 @@
 import Base.BasePage;
+import Base.DriverHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static Base.DriverHelper.getDriver;
+
 import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends SeleniumBase {
@@ -25,16 +26,16 @@ public class LoginTest extends SeleniumBase {
 
     @Test
     public void successLogin() {
-       getDriver().get("http://google.com");
+        DriverHelper.get().getDriver().get("http://google.com");
 
-        assertTrue(getDriver().getCurrentUrl().contains("https://www.google.com/"), "The page has incorrect URL");
+        assertTrue(DriverHelper.get().getDriver().getCurrentUrl().contains("https://www.google.com/"), "The page has incorrect URL");
     }
 
 
     @Test
     public void githubFailedLogin() {
 
-        LoginPage loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(DriverHelper.get().getDriver());
         loginPage.LoginWith("a@a.a", "a");
 
         assertTrue(loginPage.isErrorMessageDisplayed(), "Error message was not displayed");

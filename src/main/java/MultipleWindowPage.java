@@ -25,10 +25,13 @@ public class MultipleWindowPage extends BasePage {
        driver.get(getURL());
     }
 
+
     public void clickOnClickHere()
     {
         click(clickHereLink);
     }
+
+
 
     public void changeTab(int index)
     {
@@ -38,7 +41,7 @@ public class MultipleWindowPage extends BasePage {
 
     public String getNewTabText()
     {
-        return newPageMessage;
+        return newPageMessage.getText();
     }
 
     public String getCurrentURL()
