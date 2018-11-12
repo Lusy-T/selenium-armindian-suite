@@ -1,8 +1,6 @@
-package Base;
+package base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -24,6 +22,7 @@ public class DragAndDropPage extends BasePage {
         PageFactory.initElements(driver, this);
         driver.get(getURL());
     }
+
 
     public void dropAndDrag() //(WebElement source, WebElement target)
     {

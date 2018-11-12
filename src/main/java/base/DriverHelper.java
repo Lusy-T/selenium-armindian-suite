@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +15,7 @@ public class DriverHelper {
     public  WebDriver driver;
     private static final String BROWSER = System.getProperty("selenium.Browser", "chrome");
 
-    private ThreadLocal <WebDriver>driverThread = new ThreadLocal<>();
+    private static ThreadLocal <WebDriver>driverThread = new ThreadLocal<>();
 
     public  WebDriver getDriver() {
         if (driver == null) {

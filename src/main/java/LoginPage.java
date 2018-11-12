@@ -1,8 +1,6 @@
-import Base.BasePage;
+import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import static jdk.nashorn.internal.objects.NativeJava.type;
 
 public class LoginPage extends BasePage {
 

@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +22,6 @@ public class LoadingPage extends BasePage {
         driver.get(getURL());
     }
 
-    @Override
     public String getURL()
     {
         return "http://the-internet.herokuapp.com/dynamic_loading/1";
