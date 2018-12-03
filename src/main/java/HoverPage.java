@@ -1,5 +1,4 @@
-package base;
-
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -7,26 +6,24 @@ import org.openqa.selenium.support.FindBys;
 import java.util.List;
 
 public class HoverPage extends BasePage {
-
-
     @FindBys({
-            @FindBy(css= ".figure")})
+            @FindBy(css = ".figure")
+    })
     private List<WebElement> figureElements;
-
     @FindBys({
+
             @FindBy(css = ".figcaption")
     })
     private List<WebElement> figcaptionElements;
 
-    public HoverPage()
-    {
+    public HoverPage() {
         super();
-     //   PageFactory.initElements(driver, this);
-        driver.get(getURL());
+        driver.get(GetUrl());
     }
 
-      @Override
-    public String getURL() {
+
+    @Override
+    public String GetUrl() {
         return "http://the-internet.herokuapp.com/hovers";
     }
 

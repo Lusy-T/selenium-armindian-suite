@@ -14,10 +14,10 @@ public class CheckboxPage extends BasePage {
 
     public CheckboxPage() {
         super();
-        driver.get(getUrl());
+        driver.get(GetUrl());
     }
 
-    public String getUrl() {
+    public String GetUrl() {
         return "http://the-internet.herokuapp.com/checkboxes";
     }
 

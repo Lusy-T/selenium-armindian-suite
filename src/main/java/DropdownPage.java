@@ -19,10 +19,10 @@ public class DropdownPage extends BasePage {
     public DropdownPage() {
         super();
         PageFactory.initElements(driver, this);
-        driver.get(getURL());
+        driver.get(GetUrl());
     }
 
-    public String getURL() {
+    public String GetUrl() {
         return "https://the-internet.herokuapp.com/dropdown";
     }
 

@@ -3,6 +3,11 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class DriverHelper {
 
@@ -38,10 +43,18 @@ public class DriverHelper {
         return driverThread.get();
     }
 
-    public  void quitDriver() {
-        if (driverThread.get() != null) {
-            driverThread.get().quit();
-            driver = null;
+    public RemoteWebDriver initRemoteDriver(DesiredCapabilities capabilities)
+    {
+        RemoteWebDriver remoteWebDriver = null;
+        try {
+            remoteWebDriver = new RemoteWebDriver(new URL(""), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void quitDriver(WebDriver driver) {
+        driver.quit();
+        driverThread.remove();
     }
 }

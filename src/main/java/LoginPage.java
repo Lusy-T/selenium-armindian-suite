@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
     {
         super();
        // this.driver = driver;
-        driver.get(getURL());
+        driver.get(GetUrl());
     }
 
     public void LoginWith(String userName, String password)
@@ -34,8 +34,13 @@ public class LoginPage extends BasePage {
         return isDisplayed(errorMessage);
     }
 
-    public String getURL()
+    public String GetURL()
     {
+        return "https://github.com/login";
+    }
+
+    @Override
+    public String GetUrl() {
         return "https://github.com/login";
     }
 }

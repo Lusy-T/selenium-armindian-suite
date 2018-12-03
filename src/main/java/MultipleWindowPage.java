@@ -11,14 +11,14 @@ public class MultipleWindowPage extends BasePage {
     private WebElement newPageMessage;
 
      @Override
-    public String getURL() {
+    public String GetUrl() {
         return "https://the-internet.herokuapp.com/windows";
     }
 
     public MultipleWindowPage()
     {
         super();
-       driver.get(getURL());
+       driver.get(GetUrl());
     }
 
 

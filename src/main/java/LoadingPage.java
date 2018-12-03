@@ -1,5 +1,5 @@
-package base;
-
+import base.BasePage;
+import base.WaitHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -19,10 +19,10 @@ public class LoadingPage extends BasePage {
     {
         super();
         PageFactory.initElements(driver, this);
-        driver.get(getURL());
+        driver.get(GetUrl());
     }
 
-    public String getURL()
+    public String GetUrl()
     {
         return "http://the-internet.herokuapp.com/dynamic_loading/1";
     }

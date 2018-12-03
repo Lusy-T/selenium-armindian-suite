@@ -7,48 +7,8 @@ import okhttp3.*;
 import java.io.IOException;
 
 public class Client {
-
-
-    private static String ACCESS_TOCKEN;
-    private static String ACCESS_TOKEN;
-
-    public static void main(String[] args) throws IOException {
-        JsonObject jsonObject = getAccessToken("sqa.days@yandex.ru", "Armenia2018");
-        System.out.println(jsonObject);
-        OkHttpClient client = new OkHttpClient();
-        MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"is_private\":false,\"creation_template\":1,\"name\":\"Special one\",\"description\":\"asas\"}\n");
-        Request request = new Request.Builder()
-                .url("https://api.taiga.io/api/v1/projects")
-                .post(body)
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Bearer " + jsonObject.get("auth_token").getAsString())
-                .addHeader("cache-control", "no-cache")
-                .build();
-
-        Response response = client.newCall(request).execute();
-        String jsonString = response.body().string();
-        System.out.println(jsonString);
-        new JsonParser().parse(jsonString).getAsJsonObject();
-
-    }
-
-    public static JsonObject getAccessToken(String email, String password) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-
-        MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"username\":\""+ email +"\",\"password\":\""+ password +"\",\"type\":\"normal\"}");
-        Request request = new Request.Builder()
-                .url("https://api.taiga.io/api/v1/auth")
-                .post(body)
-                .addHeader("Content-Type", "application/json")
-                .addHeader("cache-control", "no-cache")
-                .build();
-
-        Response response = client.newCall(request).execute();
-        String jsonString = response.body().string();
-        return  new JsonParser().parse(jsonString).getAsJsonObject();
-    }
+    private static String ACCESS_TOKEN = null;
+    private static final String BASE_URL = "https://api.taiga.io/api/v1";
 
     public static JsonObject login(String email, String password) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -67,22 +27,35 @@ public class Client {
         String jsonString = response.body().string();
         JsonObject object = new JsonParser().parse(jsonString).getAsJsonObject();
         ACCESS_TOKEN = object.get("auth_token").getAsString();
-        return  new JsonParser().parse(jsonString).getAsJsonObject();
+        return  object;
     }
 
-    public static JsonObject createProject(JsonObject project) throws IOException {
+    public static Response post(String url, JsonObject jsonObject) {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, project.toString());
+        RequestBody body = RequestBody.create(mediaType, jsonObject.toString());
         Request request = new Request.Builder()
-                .url("https://api.taiga.io/api/v1/projects")
+                .url(BASE_URL + url)
                 .post(body)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
                 .build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        Response response = client.newCall(request).execute();
-        String jsonString = response.body().string();
-        return  new JsonParser().parse(jsonString).getAsJsonObject();
+        assert response != null;
+        if (!response.isSuccessful()) {
+            throw new Error("HTTP error code: " + String.valueOf(response.code()));
+        }
+
+        return response;
     }
+
+
+
+
 }

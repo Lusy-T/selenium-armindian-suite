@@ -26,14 +26,12 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
 
     @Override
     protected void isLoaded() throws Error {
-        if (!driver.getCurrentUrl().equals(getURL())) {
-            throw new Error (getURL() +" is not loaded");
+        if (!driver.getCurrentUrl().equals(GetUrl())) {
+            throw new Error (GetUrl() +" is not loaded");
         };
     }
 
-    public String getURL(){
-        return null;
-    };
+    public abstract String GetUrl();
 
     public void type(WebElement element, String text) {
         System.out.println("Typing " + text + " to element with location: " + element.toString());

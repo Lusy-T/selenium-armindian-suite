@@ -1,14 +1,10 @@
-package base;
-
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class DragAndDropPage extends BasePage {
-    @Override
-    public String getURL() {
-        return "https://the-internet.herokuapp.com/drag_and_drop";
-    }
+
 
     @FindBy(id= "column-a")
     private WebElement source;
@@ -20,9 +16,13 @@ public class DragAndDropPage extends BasePage {
     public DragAndDropPage() {
         super();
         PageFactory.initElements(driver, this);
-        driver.get(getURL());
+        driver.get(GetUrl());
     }
 
+    @Override
+    public String GetUrl() {
+        return "https://the-internet.herokuapp.com/drag_and_drop";
+    }
 
     public void dropAndDrag() //(WebElement source, WebElement target)
     {
