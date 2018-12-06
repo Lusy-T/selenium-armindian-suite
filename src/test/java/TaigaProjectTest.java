@@ -2,6 +2,7 @@ import api.ApiHelper;
 import api.Client;
 
 import com.google.gson.JsonObject;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -12,6 +13,12 @@ import static org.testng.Assert.assertTrue;
 
 public class TaigaProjectTest extends SeleniumBase
 {
+
+    @BeforeMethod
+    public void setUpMethod()
+    {
+
+    }
     @Test
     public void projectPage(Method method) throws IOException
     {
@@ -28,5 +35,7 @@ public class TaigaProjectTest extends SeleniumBase
         TaigaProjectPage projectPage = new TaigaProjectPage(project);
         //taigaProjectPage.getURL();
     }
+
+
 
 }

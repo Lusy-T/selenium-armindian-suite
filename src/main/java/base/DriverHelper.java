@@ -18,14 +18,14 @@ public class DriverHelper {
             switch (BROWSER) {
                 case "chrome":
                     System.setProperty("webdriver.chrome.driver",
-                            "./src/main/resources/drivers/chromedriver-mac-64bit");
+                            "./src/main/resources/drivers/chromedriver-windows-32bit.exe");
                     driver = new ChromeDriver();
                     driverThread.set(driver);
                     break;
 
                 case "firefox":
-                    System.setProperty("webdriver.gecko.driver",
-                            "./src/main/resources/drivers/geckodriver-mac-64bit");
+                    System.setProperty("webdriver.chrome.driver",
+                            "./src/main/resources/drivers/chromedriver-windows-32bit.exe");
                     driver = new FirefoxDriver();
                     driverThread.set(driver);
                     break;

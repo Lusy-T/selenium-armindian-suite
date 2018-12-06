@@ -17,6 +17,17 @@ public class ApiHelper {
         String jsonString = response.body().string();
         return  new JsonParser().parse(jsonString).getAsJsonObject();
     }
+
+    public static void deleteProject(JsonObject project)
+    {
+        Client.delete("/projects", project);
+    }
+
+    public static void deleteIssue(JsonObject project)
+    {
+        Client.delete("/projects", project);
+    }
+
     public static JsonObject createProject() throws IOException {
         JsonObject project = new JsonObject();
         project.addProperty("name", "Test Project " + new Date().toString());

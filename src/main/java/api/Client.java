@@ -56,6 +56,26 @@ public class Client {
     }
 
 
+    public static void delete(String urk, JsonObject jsonObject)
+    {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://api.taiga.io/api/v1/projects/296208")
+                .delete(null)
+                .addHeader("content-type", "application/json")
+               // .addHeader("authorization", "Bearer eyJ1c2VyX2F1dGhlbnRpY2F0aW9uX2lkIjozMzQ3MDF9:1gUvrF:zjptkwmY9hOcaqG10zMSBdETqeQ")
+                .addHeader("authorization", "Bearer " + ACCESS_TOKEN)
+                .addHeader("cache-control", "no-cache")
+                .addHeader("postman-token", "99696ce3-d0bf-b5af-83ad-7b75c5cb9a66")
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
