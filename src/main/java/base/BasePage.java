@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 
 import java.util.List;
 
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+
 
 public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableComponent<T> {
     protected WebDriver driver;
@@ -34,6 +36,7 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
     public abstract String GetUrl();
 
     public void type(WebElement element, String text) {
+        LOGGER.info("Typing " + text + " to element");
         System.out.println("Typing " + text + " to element with location: " + element.toString());
         element.sendKeys(text);
     }
